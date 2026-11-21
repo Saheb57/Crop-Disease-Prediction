@@ -28,7 +28,7 @@ Image Size: 256 × 256 pixels
 
 Image Format: RGB
 
-Dataset Source: Kaggle (add the exact dataset link here).
+Dataset Source: [PlantVillage Dataset – Kaggle](https://www.kaggle.com/datasets/abdallahalidev/plantvillage-dataset)
 
 ## Algorithms Used
 
@@ -36,15 +36,20 @@ Dataset Source: Kaggle (add the exact dataset link here).
 2. MobileNetV2 (Transfer Learning)
 3. SVM (Support Vector Machine with MobileNetV2 feature extraction)
 
-## Model Performance
+## Model Performance Comparison
 
-| Algorithm | Accuracy |
-|---|---:|
-| CNN | 90.00% |
-| MobileNetV2 | 93.33% |
-| SVM | 98.33% |
+All models were evaluated on 60 validation images.
+
+| Algorithm | Accuracy | Precision | Recall | F1-Score |
+|---|---:|---:|---:|---:|
+| CNN | 90.00% | 92% | 90% | 90% |
+| MobileNetV2 | 93.33% | 93% | 93% | 93% |
+| SVM | 98.33% | 98% | 98% | 98% |
 
 SVM achieved the highest validation accuracy in this experiment.
+
+Note: These results are based on a small validation dataset and may differ when tested on new real-world images.
+
 
 ## Evaluation Metrics
 - Accuracy
@@ -86,29 +91,48 @@ Crop_Disease_Prediction/
   - compare_models.py
 - README.md
 
-## How to Run
+## How to Run the Project
 
-### 1. Install Required Libraries
+### 1. Clone the Repository
 
-pip install tensorflow streamlit scikit-learn pandas numpy matplotlib seaborn pillow joblib
+```bash
+git clone https://github.com/Saheb57/Crop-Disease-Prediction.git
+cd Crop-Disease-Prediction
+```
 
-### 2. Run the Web Application
+### 2. Install Required Libraries
 
-From the project root directory:
+```bash
+pip install -r requirements.txt
+```
 
+### 3. Run the Web Application
+
+```bash
 python -m streamlit run app/app.py
+```
 
-### 3. Upload an Image
-Upload a potato leaf image and click Predict Disease.
+### 4. Upload a Leaf Image
 
-The application displays the predicted disease.
+- Open the Streamlit application in your browser.
+- Upload a potato leaf image.
+- Click the Predict Disease button.
+- The application displays the predicted disease.
+
+### 5. Dataset for Model Training
+
+Download the PlantVillage Dataset from Kaggle.
+
+Select the required potato disease classes and place the images inside the respective folders in the `dataset/` directory.
 
 ## Results
-The project successfully developed a working prototype for potato leaf disease classification.
-
-The SVM classifier achieved 98.33% validation accuracy on 60 validation images.
-
-Note: These are experimental validation results, not a guarantee of real-world prediction accuracy.
+  class_distribution.png
+  cnn_confusion_matrix.png
+  mobilenetv2_confusion_matrix.png
+  model_comparison.csv
+  model_comparison.png
+  potato_svm_model.pkl
+  sample_images.png
 
 ## Future Scope
 - Increase dataset size.
