@@ -1,0 +1,14 @@
+
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.vscode/
+*.log
+
+# Dataset images
+dataset/
+
+# Large CNN model files
+results/*.keras
