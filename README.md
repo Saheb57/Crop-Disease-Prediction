@@ -1,6 +1,7 @@
 # Crop Disease Prediction Using Machine Learning
 
 ## Project Overview
+
 This project detects potato leaf diseases using Machine Learning and Deep Learning techniques.
 
 The system classifies potato leaf images into three categories:
@@ -9,12 +10,14 @@ The system classifies potato leaf images into three categories:
 3. Potato Healthy
 
 ## Objectives
+
 - Detect diseases in potato leaves.
 - Preprocess and analyze image datasets.
 - Train and compare multiple ML algorithms.
 - Develop a simple web application for disease prediction.
 
 ## Dataset
+
 Total Images: 301
 
 | Class | Images |
@@ -22,7 +25,7 @@ Total Images: 301
 | Early Blight | 100 |
 | Late Blight | 101 |
 | Healthy | 100 |
-| Total | 301 |
+| **Total** | **301** |
 
 Image Size: 256 × 256 pixels
 
@@ -30,8 +33,7 @@ Image Format: RGB
 
 Dataset Source: [PlantVillage Dataset – Kaggle](https://www.kaggle.com/datasets/abdallahalidev/plantvillage-dataset)
 
-Note: The dataset images are not included in this repository.
-Download the dataset from Kaggle and place the images in the respective folders inside the dataset/ directory.
+**Note:** The dataset images are not included in this repository. Download the dataset from Kaggle and place the images in the respective folders inside the `dataset/` directory.
 
 ## Algorithms Used
 
@@ -51,10 +53,10 @@ All models were evaluated on 60 validation images.
 
 SVM achieved the highest validation accuracy in this experiment.
 
-Note: These results are based on a small validation dataset and may differ when tested on new real-world images.
-
+**Note:** These results are based on a small validation dataset and may differ when tested on new real-world images.
 
 ## Evaluation Metrics
+
 - Accuracy
 - Precision
 - Recall
@@ -62,6 +64,7 @@ Note: These results are based on a small validation dataset and may differ when 
 - Confusion Matrix
 
 ## Technologies Used
+
 - Python
 - TensorFlow
 - Keras
@@ -74,25 +77,43 @@ Note: These results are based on a small validation dataset and may differ when 
 
 ## Project Structure
 
+```text
 Crop_Disease_Prediction/
-- app/
-  - app.py
-- dataset/
-  - Potato___Early_blight/
-  - Potato___Late_blight/
-  - Potato___healthy/
-- results/
-- src/
-  - train.py
-  - predict.py
-  - eda.py
-  - visualize.py
-  - mobilenet.py
-  - evaluate.py
-  - evaluate_cnn.py
-  - svm_model.py
-  - compare_models.py
-- README.md
+│
+├── app/
+│   └── app.py
+│
+├── dataset/
+│   ├── Potato___Early_blight/
+│   ├── Potato___Late_blight/
+│   └── Potato___healthy/
+│
+├── results/
+│   ├── class_distribution.png
+│   ├── cnn_confusion_matrix.png
+│   ├── mobilenetv2_confusion_matrix.png
+│   ├── model_comparison.csv
+│   ├── model_comparison.png
+│   ├── potato_svm_model.pkl
+│   └── sample_images.png
+│
+├── src/
+│   ├── train.py
+│   ├── predict.py
+│   ├── eda.py
+│   ├── visualize.py
+│   ├── mobilenet.py
+│   ├── evaluate.py
+│   ├── evaluate_cnn.py
+│   ├── svm_model.py
+│   └── compare_models.py
+│
+├── README.md
+├── requirements.txt
+└── .gitignore
+```
+
+**Note:** The dataset directory is not included in the GitHub repository. The CNN and MobileNetV2 `.keras` training model files are also excluded. The Streamlit application uses the saved SVM model and MobileNetV2 feature extraction.
 
 ## How to Run the Project
 
@@ -115,6 +136,8 @@ pip install -r requirements.txt
 python -m streamlit run app/app.py
 ```
 
+The application may need an internet connection on its first run to download MobileNetV2 ImageNet weights.
+
 ### 4. Upload a Leaf Image
 
 - Open the Streamlit application in your browser.
@@ -129,19 +152,24 @@ Download the PlantVillage Dataset from Kaggle.
 Select the required potato disease classes and place the images inside the respective folders in the `dataset/` directory.
 
 ## Results
-  class_distribution.png
-  cnn_confusion_matrix.png
-  mobilenetv2_confusion_matrix.png
-  model_comparison.csv
-  model_comparison.png
-  potato_svm_model.pkl
-  sample_images.png
+
+The following results and evaluation files are available in the `results/` directory:
+
+- Class distribution visualization
+- CNN confusion matrix
+- MobileNetV2 confusion matrix
+- Model comparison chart
+- Model comparison CSV report
+- Sample image visualization
+- Saved SVM model
 
 ## Future Scope
+
 - Increase dataset size.
 - Test on real field images.
 - Improve model accuracy and generalization.
 - Develop a mobile application.
 
 ## Author
+
 Individual B.Tech Project
