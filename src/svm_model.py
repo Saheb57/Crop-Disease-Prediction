@@ -2,6 +2,7 @@
 import os
 import numpy as np
 import tensorflow as tf
+from pathlib import Path
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.applications import MobileNetV2
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
@@ -9,7 +10,10 @@ from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score, classification_report
 import joblib
 
-dataset_path = "../dataset"
+# Project paths
+BASE_DIR = Path(__file__).resolve().parent.parent
+dataset_path = BASE_DIR / "dataset"
+results_path = BASE_DIR / "results"
 
 IMG_SIZE = 224
 BATCH_SIZE = 16
@@ -21,7 +25,7 @@ datagen = ImageDataGenerator(
 )
 
 train_data = datagen.flow_from_directory(
-    dataset_path,
+    str(dataset_path),
     target_size=(IMG_SIZE, IMG_SIZE),
     batch_size=BATCH_SIZE,
     class_mode="categorical",
@@ -31,7 +35,7 @@ train_data = datagen.flow_from_directory(
 )
 
 validation_data = datagen.flow_from_directory(
-    dataset_path,
+    str(dataset_path),
     target_size=(IMG_SIZE, IMG_SIZE),
     batch_size=BATCH_SIZE,
     class_mode="categorical",
@@ -48,20 +52,24 @@ base_model = MobileNetV2(
     input_shape=(IMG_SIZE, IMG_SIZE, 3)
 )
 
-# Extract training features
 print("\nExtracting Training Features...")
 X_train = base_model.predict(train_data)
 y_train = train_data.classes
 
-# Extract validation features
 print("\nExtracting Validation Features...")
 X_val = base_model.predict(validation_data)
 y_val = validation_data.classes
 
-# Train SVM
+# Train SVM with probability estimation
 print("\nTraining SVM Model...")
 
-svm = SVC(kernel="linear", C=1.0)
+svm = SVC(
+    kernel="linear",
+    C=1.0,
+    probability=True,
+    random_state=42
+)
+
 svm.fit(X_train, y_train)
 
 # Prediction
@@ -76,13 +84,17 @@ print("\nClassification Report:")
 print(classification_report(
     y_val,
     y_pred,
-    target_names=list(train_data.class_indices.keys())
+    target_names=list(train_data.class_indices.keys()),
+    zero_division=0
 ))
 
 # Save model
-os.makedirs("../results", exist_ok=True)
+os.makedirs(results_path, exist_ok=True)
 
-joblib.dump(svm, "../results/potato_svm_model.pkl")
+joblib.dump(
+    svm,
+    results_path / "potato_svm_model.pkl"
+)
 
 print("\nSVM Model Training Completed!")
 print("SVM Model Saved Successfully!")
