@@ -1,5 +1,5 @@
 # Crop Disease Prediction Using Machine Learning
-# Potato Leaf Disease Prediction Using Machine Learning
+# Crop Disease Prediction Using Machine Learning
 
 ## Project Overview
 This project detects potato leaf diseases using Machine Learning and Deep Learning techniques.
