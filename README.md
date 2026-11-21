@@ -30,6 +30,9 @@ Image Format: RGB
 
 Dataset Source: [PlantVillage Dataset – Kaggle](https://www.kaggle.com/datasets/abdallahalidev/plantvillage-dataset)
 
+Note: The dataset images are not included in this repository.
+Download the dataset from Kaggle and place the images in the respective folders inside the dataset/ directory.
+
 ## Algorithms Used
 
 1. CNN (Convolutional Neural Network)
